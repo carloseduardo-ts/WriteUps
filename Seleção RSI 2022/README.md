@@ -5,27 +5,28 @@ OBS.: Até o momento não sei se os desafios ficarão disponíveis após a sele�
 ## **Lista de desafios**
 
 - [Misc](#misc)
-  - Boas vindas - Seleção RSI 2022
-  - Consegue rodar?
-- Forense
-  - Metaverso? lul
-  - Zzzzzzzzip
-- PWN
-  - BOF para leigos
-  - BOF para leitores
-  - BOF + redirect
-- Reversing
-  - Introdução à Egenharia Reversa
-  - babystrings
-  - babystrings-wide
-  - stack
-  - pyme
-- Crypto
-  - Rato Ordinário Tripulante 13
-- Web
-  - Que diabos é JS?
-  - Me dá o c\*\*kie?
-  - App Sec
+  - [Boas vindas - Seleção RSI 2022](#boas-vindas---seleção-rsi-2022)
+  - [Consegue rodar?](#consegue-rodar)
+- [Forense](#forense)
+  - [Metaverso? lul](#metaverso-lul)
+  - [Zzzzzzzzip](#zzzzzzzzip)
+- [PWN](#pwn)
+  - [BOF para leigos](#bof-para-leigos)
+  - [BOF para leitores](#bof-para-leitores)
+  - [BOF + redirect](#bof--redirect)
+- [Reversing](#reversing)
+  - [Introdução à Egenharia Reversa](#introdução-à-engenharia-reversa)
+  - [babystrings](#babystrings)
+  - [babystrings-wide](#babystrings-wide)
+  - [stack](#stack)
+  - [loops](#loops)
+  - [pyme](#pyme)
+- [Crypto](#crypto)
+  - [Rato Ordinário Tripulante 13](#rato-ordinário-tripulante-13)
+- [Web](#web)
+  - [Que diabos é JS?](#que-diabos-é-js)
+  - [Me dá o c\*\*kie?](#me-dá-o-ckie)
+  - [App Sec](#appsec)
 
 
 ## **Misc**

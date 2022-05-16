@@ -4,7 +4,7 @@ OBS.: Até o momento não sei se os desafios ficarão disponíveis após a sele�
 
 ## **Lista de desafios**
 
-- Misc
+- [Misc](#misc)
   - Boas vindas - Seleção RSI 2022
   - Consegue rodar?
 - Forense

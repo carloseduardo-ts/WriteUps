@@ -129,4 +129,20 @@ This challenge provides a URL. While inspecting your pages, I found a strange at
 ```
 echo "cGljb0NURnt3ZWJfc3VjYzNzc2Z1bGx5X2QzYzBkZWRfZGYwZGE3Mjd9"| base64 -d  
 ```
+# Unminify
 
+This challenge provides a URL. While inspecting the code, I noticed several class attributes following the default flag format, but only one of them contained the actual flag. 
+
+# Time Machine
+
+This challenge provides a ZIP file that contains a Git repository. To find the flag, run:
+```
+git log
+```
+
+# Super SSH
+
+This challenge is simple: just connect to SSH, and you will see the flag. 
+```
+ssh ctf-player@titan.picoctf.net -p 55730
+```

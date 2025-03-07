@@ -122,3 +122,11 @@ Enter your choice: 4
 
 YOU WIN
 ```
+
+# WebDecode
+
+This challenge provides a URL. While inspecting your pages, I found a strange attribute in the font code on about.html. The attribute contained a Base64-encoded value, which I decoded using a command.
+```
+echo "cGljb0NURnt3ZWJfc3VjYzNzc2Z1bGx5X2QzYzBkZWRfZGYwZGE3Mjd9"| base64 -d  
+```
+
